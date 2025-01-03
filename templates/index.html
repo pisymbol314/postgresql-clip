@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Search with CLIP, PostgreSQL, and S3</title>
+    <script src="https://unpkg.com/htmx.org@2.0.0" integrity="sha384-wS5l5IKJBvK6sPTKa2WZ1js3d947pvWXbPJ1OmWfEuxLgeHcEbjUUA5i9V5ZkpCw" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            position: relative; /* Allows positioning of the logo */
+        }
+        h1 {
+            text-align: center;
+            color: #000F9C; /* Title color */
+            margin-bottom: 5px; /* Space below the title */
+        }
+        h4 {
+            text-align: center;
+            color: #333; /* Subtitle color */
+            margin-top: 0; /* Remove default margin */
+            font-size: 18px; /* Adjust font size for better visibility */
+        }
+        .logo {
+            display: block; /* Center the logo */
+            margin: 0 auto; /* Center alignment */
+            width: 250px; /* Increased size of the logo */
+            margin-bottom: 20px; /* Space below the logo */
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #000F9C; /* Button background color */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        button:hover {
+            background-color: #003DA5; /* Darker shade for hover effect */
+        }
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .image-item {
+            margin: 10px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .response-message {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<img src="https://corporate.ovhcloud.com/sites/default/files/2022-03/ovhcloud-logo2.png" alt="OVHcloud Logo" class="logo"> <!-- Replace with actual path to the logo -->
+
+<h1>Image Search</h1>
+<h4>Leveraging OVHcloud's Managed Databases and OpenAI's CLIP model</h4>
+
+<form hx-post="/search_form" hx-target="#response">
+    <input type="text" name="search_text" placeholder="Enter your search query...">
+    <button type="submit">Search</button>
+</form>
+
+<div id="response" class="response-message">
+    <p>Find four best matching results from images stored in OVHcloud Object Storage</p>
+</div>
+
+<div id="search-results" class="image-container"></div>
+
+<script>
+    document.addEventListener('htmx:afterSwap', function (event) {
+        // Clear previous results
+        const resultsContainer = document.getElementById('search-results');
+        resultsContainer.innerHTML = '';
+
+        // Assuming the response contains an array of image URLs
+        const images = event.detail.xhr.response.images; // Adjust based on your response structure
+
+        if (images && images.length > 0) {
+            images.forEach(imageUrl => {
+                const imgDiv = document.createElement('div');
+                imgDiv.className = 'image-item';
+                imgDiv.innerHTML = `<img src="${imageUrl}" alt="Search Result">`;
+                resultsContainer.appendChild(imgDiv);
+            });
+        } else {
+            resultsContainer.innerHTML = '<p>No images found for your query.</p>';
+        }
+    });
+</script>
+
+</body>
+</html>

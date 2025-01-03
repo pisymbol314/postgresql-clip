@@ -1,0 +1,11 @@
+<!-- templates/images.html -->
+<div id="images">
+    {% for image in images %}
+        <div class="image-container">
+            <p>Image {{ loop.index }}: {{ image.key }}</p>
+            <img src="{{ image.url }}" alt="Image {{ image.key }}">
+        </div>
+    {% else %}
+        <p>No results found</p>
+    {% endfor %}
+</div>
