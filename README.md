@@ -51,6 +51,7 @@ source venv/bin/activate
 ```shell
 TMPDIR=/home/ubuntu python3 -m pip install -r requirements.txt --no-cache-dir
 ```
+> Note: Change TMPDIR to a different directory with enough size if you are using any other OS.
 
 > **Note** Sometimes we've seen the Python `clip.load` function fail to download the CLIP model, presumably due to the source server being busy. The code here will use a local copy of the model if it's available. To make that local copy:
 >
