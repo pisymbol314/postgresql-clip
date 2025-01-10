@@ -18,18 +18,19 @@ The architecture consists of several key components:
 ## Running the Demo
 > **Note** First two steps are for creating OVHcloud compute instance & Managed PostgreSQL Database. You can skip these steps if you already have these services available. You can also run this application locally on your system.
 
-1. Create OVHcloud public cloud compute instance (e.g. b3-8 with Ubuntu image). Here are some useful documentations: [Guide - compute instance creation](https://support.us.ovhcloud.com/hc/en-us/articles/360002245164-Creating-and-Connecting-a-Public-Cloud-Instance) and [Guide - SSH key creation](https://support.us.ovhcloud.com/hc/en-us/articles/33773177952659-Create-and-use-SSH-keys-for-Public-Cloud-instances)
+1. Create PostgreSQL database from OVHcloud control panel. [Follow the database creation guide](https://support.us.ovhcloud.com/hc/en-us/articles/20611621210515-Getting-Started-with-Cloud-Databases) and [PostgreSQL configuration guide](https://support.us.ovhcloud.com/hc/en-us/articles/21535313272083-PostgreSQL-Configure-an-Instance-to-Accept-Incoming-Connections)
 
-2. Create PostgreSQL database from OVHcloud control panel. [Follow the database creation guide](https://support.us.ovhcloud.com/hc/en-us/articles/20611621210515-Getting-Started-with-Cloud-Databases) and [PostgreSQL configuration guide](https://support.us.ovhcloud.com/hc/en-us/articles/21535313272083-PostgreSQL-Configure-an-Instance-to-Accept-Incoming-Connections)
+2. Create OVHcloud public cloud compute instance (e.g. b3-8 located in Virginia with Ubuntu 24.04 image) connected to the public network. Here are some useful documentations: [Guide - compute instance creation](https://support.us.ovhcloud.com/hc/en-us/articles/360002245164-Creating-and-Connecting-a-Public-Cloud-Instance) and [Guide - SSH key creation](https://support.us.ovhcloud.com/hc/en-us/articles/33773177952659-Create-and-use-SSH-keys-for-Public-Cloud-instances)
+> **Note** Note down the IP address of the instance. You will need it for adding to the list of authorized IPs for the database.
 
 3. Save the PostgreSQL URI from OVHcloud control panel with the correct username and password. We will use this URI to connect with the Database in scripts.
-> **Note** You can reset the password from OVHcloud control panel.
+> **Note** There will already be a default user that you can find under the Users tab of database details. You can reset password of the user by clicling on the three dots. Embed the username and password in your URI and note it down. We will need it to connect with the database.
 
-4. From OVHcloud control panel, add IP address of the compute instance to "Authorised IPs" for PostgreSQL database.
+4. From OVHcloud control panel, add IP address of the compute instance obtained from step 2 to "Authorised IPs" for PostgreSQL database.
 
 5. Connect to the compute instance via ssh and check if python is installed (install python if not installed)
 ```shell
-sudo apt update && sudo apt install python3 -y && sudo apt install python3.12-venv -y
+sudo apt update && sudo apt install python3 -y && sudo apt install python3-venv -y
 ```
 
 6. Clone the Github repository containing these scripts to compute instance. cd to the directory containing scripts.
@@ -58,8 +59,8 @@ TMPDIR=/home/ubuntu python3 -m pip install -r requirements.txt --no-cache-dir
 >     mkdir models
 >     curl https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt --output models/ViT-B-32.pt
 
-10. Copy the template environent file, and then edit the `.env` file to insert the credentials (URI) needed to connect to the database. 
-> **Note** You can use the URI obtained from step 3 for variable PG_SERVICE_URI.
+10. Copy the template environent file, and then edit the `.env` file to insert the credentials (URI) needed to connect to the database. You will also need to enter the S3 object storage access key and secret. 
+> **Note** Inserting the database credentials, object storage access key and secret are **mendatory** for this demo. Database credentils (URI) were obtained from step 3 and need to be assigned to variable PG_SERVICE_URI. Object storage access key and secret will be shared during the demo session and will need to be assigned to variables S3_ACCESS_KEY and S3_SECRET_KEY respecively.
 ```shell
 cp .env_example .env
 ```
