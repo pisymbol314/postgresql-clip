@@ -34,8 +34,8 @@ First, creating OVHcloud compute instance & Managed PostgreSQL Database. You can
 2. Create OVHcloud public cloud compute instance (e.g. b3-8 located in Virginia with Ubuntu 24.04 image) connected to the public network. Here are some useful documentations: [Guide - compute instance creation](https://support.us.ovhcloud.com/hc/en-us/articles/360002245164-Creating-and-Connecting-a-Public-Cloud-Instance) and [Guide - SSH key creation](https://support.us.ovhcloud.com/hc/en-us/articles/33773177952659-Create-and-use-SSH-keys-for-Public-Cloud-instances)
 
 > [!Note]
-
-Note down the IP address of the instance. You will need it for adding to the list of authorized IPs for the database.
+>
+> Note down the IP address of the instance. You will need it for adding to the list of authorized IPs for the database.
 
 3. Save the PostgreSQL URI from OVHcloud control panel with the correct username and password. We will use this URI to connect with the Database in scripts.
 
