@@ -16,10 +16,12 @@ The architecture consists of several key components:
 
 ## Scripts Breakdown
 
-- **create_table.py**: Prepares the PostgreSQL database by enabling necessary extensions and creating tables if they do not exist.
-- **process_images.py**: Fetches images from OVHcloud Object Storage, computes their embeddings using the CLIP model, and stores them in the database.
-- **find_images.py**: Generates an embedding from user input text and queries the database for matches, making the application interactive.
-- **app.py**: Offers a user-friendly interface where users can enter search queries and view results seamlessly.
+- `01_create_table.py`: Prepares the PostgreSQL database by enabling necessary extensions and creating tables if they do not exist.
+- `02_process_images.py`: Fetches images from OVHcloud Object Storage, computes their embeddings using the CLIP model, and stores them in the database.
+- `03_find_images.py`: Generates an embedding from user input text and queries the database for matches, making the application interactive.
+- [OPTIONAL] `04_db_properties.py`: Verify via the command line that search is working as expected.
+
+- `app.py`: Offers a user-friendly interface where users can enter search queries and view results seamlessly.
 
 ## Running the Demo
 
