@@ -70,10 +70,12 @@ TMPDIR=/home/ubuntu python3 -m pip install -r requirements.txt --no-cache-dir
 > Note: Change TMPDIR to a different directory with enough size if you are using any other OS.
 
 > **Note** Sometimes we've seen the Python `clip.load` function fail to download the CLIP model, presumably due to the source server being busy. The code here will use a local copy of the model if it's available. To make that local copy:
->
->     mkdir models
->
-> curl <https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt> --output models/ViT-B-32.pt
+
+```shell
+mkdir models
+
+curl <https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt> --output models/ViT-B-32.pt
+```
 
 10. Copy the template environent file, and then edit the `.env` file to insert the credentials (URI) needed to connect to the database. You will also need to enter the S3 object storage access key and secret.
     > **Note** Inserting the database credentials, object storage access key and secret are **mendatory** for this demo. Database credentils (URI) were obtained from step 3 and need to be assigned to variable PG_SERVICE_URI. Object storage access key and secret will be shared during the demo session and will need to be assigned to variables S3_ACCESS_KEY and S3_SECRET_KEY respecively.
