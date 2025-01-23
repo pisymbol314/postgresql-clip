@@ -108,7 +108,7 @@ cp .env_example .env
 uvicorn app:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-Go to http://ip_address:8000 in a web browser and request a search.
+Go to http://<COMPUTE_INSTANCE_IP>:8000 in a web browser and request a search.
 
 > **Note** ip_address is the IP address of the compute instance running scripts.
 
