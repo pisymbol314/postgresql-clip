@@ -128,7 +128,11 @@ Possible ideas include:
 - man jumping
 - outer space
 
-> [!IMPORTANT] > **Remember to delete services once done with the demo to avoid recurring charges.**
+#### Clean Up Resources
+
+> [!IMPORTANT]
+>
+> **Remember to delete services once done with the demo to avoid recurring charges.**
 
 ## The photos
 
