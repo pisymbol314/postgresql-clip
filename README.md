@@ -4,6 +4,8 @@
 
 Welcome to the Image Search Application! This project demonstrates how to leverage [OVHcloud's Managed PostgreSQL Databases](https://www.ovhcloud.com/en/public-cloud/postgresql/) alongside [OpenAI's CLIP model](https://github.com/openai/clip) to create an image search application.
 
+![Diagram of the demo workflow](img/model.png)
+
 ## System Architecture
 
 The architecture consists of several key components:
