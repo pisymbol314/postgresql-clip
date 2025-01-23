@@ -85,19 +85,19 @@ cp .env_example .env
 11. Enable pgvector and set up the table we need in the database
 
 ```shell
-./01create_table.py
+./01_create_table.py
 ```
 
 12. Calculate the embeddings for the pictures in the OVHcloud object storage and upload them to the database
 
 ```shell
-./02process_images.py
+./02_process_images.py
 ```
 
 13. You can run `find_images.py` to check that everything is working - it looks for images matching the text `man jumping` and reports their filenames
 
 ```shell
-./03find_images.py
+./03_find_images.py
 ```
 
 14. Run the webapp and access remotely using uvicorn server

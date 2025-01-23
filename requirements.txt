@@ -1,8 +1,11 @@
-typing
+python-dotenv
+
+# For FastAPI Demo
 fastapi[standard]
 jinja2
+
+# for processing Images and performing clip-powered vector search
 psycopg[binary]
-python-dotenv
 git+https://github.com/openai/CLIP.git
 ftfy
 regex
