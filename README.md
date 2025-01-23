@@ -60,24 +60,24 @@ TMPDIR=/home/ubuntu python3 -m pip install -r requirements.txt --no-cache-dir
 >     curl https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt --output models/ViT-B-32.pt
 
 10. Copy the template environent file, and then edit the `.env` file to insert the credentials (URI) needed to connect to the database. You will also need to enter the S3 object storage access key and secret. 
-> **Note** Inserting the database credentials, object storage access key and secret are **mendatory** for this demo. Database credentils (URI) were obtained from step 3 and need to be assigned to variable PG_SERVICE_URI. Object storage access key and secret will be shared during the demo session and will need to be assigned to variables S3_ACCESS_KEY and S3_SECRET_KEY respecively.
+> **Note** Inserting the database credentials, object storage access key and secret are **mendatory** for this demo. Database credentils (URI) were obtained from step 3 and need to be assigned to variable PG_SERVICE_URI. 
 ```shell
 cp .env_example .env
 ```
 
 11. Enable pgvector and set up the table we need in the database
 ```shell
-./create_table.py
+./01create_table.py
 ```
 
 12. Calculate the embeddings for the pictures in the OVHcloud object storage and upload them to the database
 ```shell
-./process_images.py
+./02process_images.py
 ```
 
 13. You can run `find_images.py` to check that everything is working - it looks for images matching the text `man jumping` and reports their filenames
 ```shell
-./find_images.py
+./03find_images.py
 ```
 
 14. Run the webapp and access remotely using uvicorn server
