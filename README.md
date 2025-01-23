@@ -33,11 +33,15 @@ First, creating OVHcloud compute instance & Managed PostgreSQL Database. You can
 
 2. Create OVHcloud public cloud compute instance (e.g. b3-8 located in Virginia with Ubuntu 24.04 image) connected to the public network. Here are some useful documentations: [Guide - compute instance creation](https://support.us.ovhcloud.com/hc/en-us/articles/360002245164-Creating-and-Connecting-a-Public-Cloud-Instance) and [Guide - SSH key creation](https://support.us.ovhcloud.com/hc/en-us/articles/33773177952659-Create-and-use-SSH-keys-for-Public-Cloud-instances)
 
-   > **Note** Note down the IP address of the instance. You will need it for adding to the list of authorized IPs for the database.
+> [!Note]
+
+Note down the IP address of the instance. You will need it for adding to the list of authorized IPs for the database.
 
 3. Save the PostgreSQL URI from OVHcloud control panel with the correct username and password. We will use this URI to connect with the Database in scripts.
 
-   > **Note** There will already be a default user that you can find under the Users tab of database details. You can reset password of the user by clicking on the three dots. Embed the username and password in your URI and note it down. We will need it to connect with the database.
+> [!Note]
+>
+> There will already be a default user that you can find under the Users tab of database details. You can reset password of the user by clicking on the three dots. Embed the username and password in your URI and note it down. We will need it to connect with the database.
 
 4. From OVHcloud control panel, add the IP address of the compute instance obtained from step 2 to "Authorised IPs" for PostgreSQL database.
 
@@ -74,10 +78,11 @@ source venv/bin/activate
 TMPDIR=/home/ubuntu python3 -m pip install -r requirements.txt --no-cache-dir
 ```
 
-> Note: Change TMPDIR to a different directory with enough size if you are using any other OS.
-
-> **Note** Sometimes we've seen the Python `clip.load` function fail to download the CLIP model, presumably due to the source server being busy. The code here will use a local copy of the model if it's available. To make that local copy:
-
+> [!Note]
+>
+> Change TMPDIR to a different directory with enough size if you are using any other OS.
+> Sometimes we've seen the Python `clip.load` function fail to download the CLIP model, presumably due to the source server being busy. The code here will use a local copy of the model if it's available. To make that local copy:
+>
 > ```shell
 > mkdir models
 >
