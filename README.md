@@ -18,8 +18,8 @@ The architecture consists of several key components:
 
 - `01_create_table.py`: Prepares the PostgreSQL database by enabling necessary extensions and creating tables if they do not exist.
 - `02_process_images.py`: Fetches images from OVHcloud Object Storage, computes their embeddings using the CLIP model, and stores them in the database.
-- `03_find_images.py`: Generates an embedding from user input text and queries the database for matches, making the application interactive.
-- [OPTIONAL] `04_db_properties.py`: Verify via the command line that search is working as expected.
+- `03_db_properties.py`: Verify via the command line that search is working as expected.
+- `04_find_images.py`: Generates an embedding from user input text and queries the database for matches, making the application interactive.
 
 - `app.py`: Offers a user-friendly interface where users can enter search queries and view results seamlessly.
 
@@ -117,13 +117,17 @@ cp .env_example .env
 ./02_process_images.py
 ```
 
-3. You can run `find_images.py` to check that everything is working - it looks for images matching the text `man jumping` and reports their filenames
+3. If you want to see clip process before starting your web app.
 
 ```shell
-./03_find_images.py
+./03_db_properties.py
 ```
 
-4. [Optional] If you want to see clip process before starting your web app. You can run `04_db_properties.py`.
+4. You can run `find_images.py` to check that everything is working - it looks for images matching the text `man jumping` and reports their filenames
+
+```shell
+./04_find_images.py
+```
 
 5. Start the webapp and access remotely using uvicorn server
 
