@@ -93,7 +93,7 @@ TMPDIR=/home/ubuntu python3 -m pip install -r requirements.txt --no-cache-dir
 
 > [!Note]
 >
-> Inserting the database credentials, object storage access key and secret are **mandatory** for this demo. Database credentials (URI) were obtained from step 3 and need to be assigned to variable PG_SERVICE_URI. Object storage access key and secret will be shared during the demo session and will need to be assigned to variables S3_ACCESS_KEY and S3_SECRET_KEY respectively.
+> Inserting the database credentials, object storage access key and secret are **mandatory** for this demo. Database credentials (URI) were obtained from step 3 and need to be assigned to variable PG_SERVICE_URI. Contact [OVHcloud US team](https://us.ovhcloud.com/contact-sales/) for Object storage access key and secret. These will need to be assigned to variables S3_ACCESS_KEY and S3_SECRET_KEY respectively.
 >
 > Keys were provided for workshop purposes and will not be usable after 23 Jan 2025.
 >
